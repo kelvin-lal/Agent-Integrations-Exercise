@@ -11,10 +11,10 @@ from datadog_api_client.v2.model.metric_payload import MetricPayload
 from datadog_api_client.v2.model.metric_point import MetricPoint
 from datadog_api_client.v2.model.metric_resource import MetricResource
 from datadog_api_client.v2.model.metric_series import MetricSeries
-from metrics.metrics import cpuMetrics
+from metrics.metrics import cpuMetrics, memoryMetrics, diskMetrics
 #temporary hard code here, we'll change it to a menu or something later
 import os
-#os.environ["DD_API_KEY"] = ""
+os.environ["DD_API_KEY"] = "api_key_here"
 os.environ["DD_SITE"] = "datadoghq.com"
 
 def metric_submission(metric_name, metric_value):
@@ -55,6 +55,12 @@ def agent():
     while True:
         cpu_metrics = cpuMetrics()
         for metric_name, metric_value in cpu_metrics.items():
+            metric_submission(metric_name, metric_value) 
+        memory_metrics = memoryMetrics()
+        for metric_name, metric_value in memory_metrics.items():
+            metric_submission(metric_name, metric_value) 
+        disk_metrics = diskMetrics()
+        for metric_name, metric_value in disk_metrics.items():
             metric_submission(metric_name, metric_value) 
         
         time.sleep(1)
