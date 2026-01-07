@@ -11,6 +11,6 @@ run DD_SITE="datadoghq.comus3.datadoghq.comus5.datadoghq.comdatadoghq.euap1.data
 ## Usage
 [Add usage instructions here]
 
-## License
-[Add license information here]
+## Key errors faced
+
 

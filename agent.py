@@ -3,6 +3,7 @@ Agent Integrations - Take home Exercise
 Kelvin Lal
 """
 from datetime import datetime
+import time
 from datadog_api_client import ApiClient, Configuration
 from datadog_api_client.v2.api.metrics_api import MetricsApi
 from datadog_api_client.v2.model.metric_intake_type import MetricIntakeType
@@ -10,10 +11,10 @@ from datadog_api_client.v2.model.metric_payload import MetricPayload
 from datadog_api_client.v2.model.metric_point import MetricPoint
 from datadog_api_client.v2.model.metric_resource import MetricResource
 from datadog_api_client.v2.model.metric_series import MetricSeries
-
+from metrics.metrics import cpuMetrics
 #temporary hard code here, we'll change it to a menu or something later
 import os
-os.environ["DD_API_KEY"] = ""
+#os.environ["DD_API_KEY"] = ""
 os.environ["DD_SITE"] = "datadoghq.com"
 
 def metric_submission(metric_name, metric_value):
@@ -50,11 +51,13 @@ def metric_submission(metric_name, metric_value):
 
 def agent():
     print("Agent starting")
-
     
-    # Test metric submission
-    metric_submission("system.cpu.filetest", 45.2)
-
+    while True:
+        cpu_metrics = cpuMetrics()
+        for metric_name, metric_value in cpu_metrics.items():
+            metric_submission(metric_name, metric_value) 
+        
+        time.sleep(1)
 
 if __name__ == "__main__":
     agent()
