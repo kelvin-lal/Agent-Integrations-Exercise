@@ -12,5 +12,7 @@ run DD_SITE="datadoghq.comus3.datadoghq.comus5.datadoghq.comdatadoghq.euap1.data
 [Add usage instructions here]
 
 ## Key errors faced
-
+- psutil.disk_usage reuires a path
+    https://psutil.readthedocs.io/en/latest/#psutil.disk_usage
+    can just use '/' for now, need to revisit this in the future for a better solution
 
