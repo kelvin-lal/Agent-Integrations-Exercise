@@ -28,11 +28,12 @@ def memoryMetrics():
     return metrics
 
 def diskMetrics():
-
+    #ran into a few issues here, not sure if it's because of the way I'm using the library or what
     metrics =  {}
 
-    metrics['test.metric.disk_usage'] = psutil.disk_usage()
-    metrics['test.metric.disk_io_counters'] = psutil.disk_io_counters()
+    metrics['test.metric.disk_usage'] = psutil.disk_usage('/').percent #using percent for now to extract a float, need to revisit this in the future for a better solution
+    #metrics['test.metric.disk_io_counters'] = psutil.disk_io_counters()
+    #this variable doenst have a .percent attribute. another revisit, also why can we use a float here and not on the metric above?
 
     return metrics
 

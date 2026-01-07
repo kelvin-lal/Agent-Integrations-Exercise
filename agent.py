@@ -14,7 +14,7 @@ from datadog_api_client.v2.model.metric_series import MetricSeries
 from metrics.metrics import cpuMetrics, memoryMetrics, diskMetrics
 #temporary hard code here, we'll change it to a menu or something later
 import os
-os.environ["DD_API_KEY"] = "api_key_here"
+os.environ["DD_API_KEY"] = "add_api_key_here"
 os.environ["DD_SITE"] = "datadoghq.com"
 
 def metric_submission(metric_name, metric_value):
