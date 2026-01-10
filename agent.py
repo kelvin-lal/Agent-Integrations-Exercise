@@ -4,29 +4,39 @@ Kelvin Lal
 """
 import time
 import os
-from metrics.metrics import cpuMetrics, memoryMetrics, diskMetrics
+import threading #for the menu, run the agent in a thread. check overhead for this vs loop
+from metrics.metrics import Metrics
 from metrics.metricSubmission import metric_submission
 
 # Temporary hard code here, we'll change it to a menu or something later
-os.environ["DD_API_KEY"] = "add_api_key_here"
+os.environ["DD_API_KEY"] = "api-key"
 os.environ["DD_SITE"] = "datadoghq.com"
 
+# global param (could be a class variable???)
+agent_running = False
+
+
 def agent():
-    print("Agent starting")
+    global agent_running
+    print("Agent starting...")
+    metrics = Metrics()
     
-    while True:
-        cpu_metrics = cpuMetrics()
+    while agent_running:
+        cpu_metrics = metrics.cpuMetrics()
         for metric_name, metric_value in cpu_metrics.items():
             metric_submission(metric_name, metric_value) 
-        memory_metrics = memoryMetrics()
+        memory_metrics = metrics.memoryMetrics()
         for metric_name, metric_value in memory_metrics.items():
             metric_submission(metric_name, metric_value) 
-        disk_metrics = diskMetrics()
+        disk_metrics = metrics.diskMetrics()
         for metric_name, metric_value in disk_metrics.items():
             metric_submission(metric_name, metric_value) 
         
         time.sleep(1)
+    
+    print("Agent stopped.")
 
 
 if __name__ == "__main__":
-    agent()
+    from menu import menu
+    menu()

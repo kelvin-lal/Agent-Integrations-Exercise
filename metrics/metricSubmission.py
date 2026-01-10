@@ -39,4 +39,4 @@ def metric_submission(metric_name, metric_value):
         response = api_instance.submit_metrics(body=body)
 
         #print(response)
-        print("Test metric sent!")
+        #print("Test metric sent!")
