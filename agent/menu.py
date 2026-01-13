@@ -4,6 +4,7 @@ Kelvin Lal
 """
 import threading
 from agent import agent as agent_module
+import checks.checkRun as checks
 
 
 def menu(): 
@@ -15,6 +16,7 @@ def menu():
         if agent_module.agent_running:
             print("1. Stop")
             print("2. Exit")
+            print("3. Status Check")
             choice = input("Enter:")
             
             match choice:
@@ -25,6 +27,8 @@ def menu():
                 case "2" | "exit" | "Exit":
                     print("Exiting...")
                     return
+                case "3" | "check" | "Check":
+                    checks.Check.check()
                 case _:
                     print("Invalid choice")
         else:

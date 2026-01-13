@@ -2,6 +2,8 @@
 Agent Integrations - Take home Exercise
 Kelvin Lal
 """
+
+#TODO add all package level imports to init/clean this up
 import sys
 import os
 import time
