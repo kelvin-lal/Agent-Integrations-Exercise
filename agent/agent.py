@@ -2,8 +2,9 @@
 Agent Integrations - Take home Exercise
 Kelvin Lal
 """
-import time
+import sys
 import os
+import time
 import threading #for the menu, run the agent in a thread. check overhead for this vs loop
 from metrics.metrics import Metrics
 from metrics.metricSubmission import metric_submission
@@ -36,7 +37,3 @@ def agent():
     
     print("Agent stopped.")
 
-
-if __name__ == "__main__":
-    from menu import menu
-    menu()
