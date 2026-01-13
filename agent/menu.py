@@ -28,7 +28,7 @@ def menu():
                     print("Exiting...")
                     return
                 case "3" | "check" | "Check":
-                    checks.Check.check()
+                    checks.Check.metricsCheck()
                 case _:
                     print("Invalid choice")
         else:
