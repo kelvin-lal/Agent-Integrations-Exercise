@@ -44,6 +44,7 @@ def agent():
             Check.metric_counts["disk"] += 1 
         
         custom_check.run()
+        Check.metric_counts["custom"] += 1
         
         time.sleep(1)
     

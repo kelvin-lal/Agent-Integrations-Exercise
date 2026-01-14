@@ -3,13 +3,14 @@ Agent Integrations - Take home Exercise
 Kelvin Lal
 """
 from checks.checkPrint import check_print
-
+from checks.customCheck import CustomCheck
 
 class Check:
     metric_counts = {
         "cpu": 0,
         "memory": 0,
-        "disk": 0
+        "disk": 0,
+        "custom": 0
     } #dont think this will always work, class variables should be inhereted throughout the code
 
     def __init__(self, metric_type, metric_quantity=0):
@@ -24,6 +25,7 @@ class Check:
         cpu_check = Check("CPU")
         memory_check = Check("Memory")
         disk_check = Check("Disk")
+        custom_check = CustomCheck("Custom Check")
 
     def metricsCheck():
         counts = Check.metric_counts
@@ -32,7 +34,10 @@ class Check:
         cpu_check = Check("CPU", counts["cpu"]) 
         memory_check = Check("Memory", counts["memory"])
         disk_check = Check("Disk", counts["disk"])
+        custom_check = Check("Custom Check", counts["custom"])
+        
         print("Status Check:\n")
         check_print(cpu_check)
         check_print(memory_check)
         check_print(disk_check)
+        check_print(custom_check)
