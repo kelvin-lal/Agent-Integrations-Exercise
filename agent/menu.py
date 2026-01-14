@@ -5,7 +5,7 @@ Kelvin Lal
 import threading
 from agent import agent as agent_module
 import checks.checkRun as checks
-
+from agent.config import config
 
 def menu(): 
     agent_thread = None
@@ -28,12 +28,13 @@ def menu():
                     print("Exiting...")
                     return
                 case "3" | "check" | "Check":
-                    checks.Check.metricsCheck()
+                    checks.Check.metricsCheck() #TODO think we should just be able to run the complete check through one func, delete others
                 case _:
                     print("Invalid choice")
         else:
             print("1. Start")
-            print("2. Exit")
+            print("2. Enter API Key")
+            print("3. Exit")
             choice = input("Enter:")
             
             match choice:
@@ -41,7 +42,10 @@ def menu():
                     agent_module.agent_running = True
                     agent_thread = threading.Thread(target=agent_module.agent, daemon=True)
                     agent_thread.start()
-                case "2" | "exit" | "Exit":
+                case "2" | "Enter API Key" | "Enter API Key":
+                    api_key = input("Enter API Key:")
+                    config.set_DD_API_KEY(api_key)
+                case "3" | "exit" | "Exit":
                     print("Exiting...")
                     return
                 case _:

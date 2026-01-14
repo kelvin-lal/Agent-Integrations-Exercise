@@ -1,8 +1,6 @@
 """
 Agent Integrations - Take home Exercise
 Kelvin Lal
-
-Entry point for the application.
 """
 from agent.menu import menu
 

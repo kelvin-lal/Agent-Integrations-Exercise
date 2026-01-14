@@ -11,10 +11,7 @@ import threading #for the menu, run the agent in a thread. check overhead for th
 from metrics.metrics import Metrics
 from metrics.metricSubmission import metric_submission
 from checks.checkRun import Check
-
-# Temporary hard code here, we'll change it to a menu or something later
-os.environ["DD_API_KEY"] = "api-key"
-os.environ["DD_SITE"] = "datadoghq.com"
+from agent.config import config
 
 # global param (could be a class variable???)
 agent_running = False
@@ -22,6 +19,9 @@ agent_running = False
 
 def agent():
     global agent_running
+    os.environ["DD_API_KEY"] = config.get_DD_API_KEY()
+    os.environ["DD_SITE"] = config.get_DD_SITE()
+    
     print("Agent starting...")
     metrics = Metrics()
     
