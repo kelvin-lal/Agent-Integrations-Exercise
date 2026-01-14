@@ -12,6 +12,7 @@ from metrics.metrics import Metrics
 from metrics.metricSubmission import metric_submission
 from checks.checkRun import Check
 from agent.config import config
+from checks.customCheck import CustomCheck
 
 # global param (could be a class variable???)
 agent_running = False
@@ -24,6 +25,7 @@ def agent():
     
     print("Agent starting...")
     metrics = Metrics()
+    custom_check = CustomCheck()
     
     while agent_running:
         cpu_metrics = metrics.cpuMetrics()
@@ -40,6 +42,8 @@ def agent():
         for metric_name, metric_value in disk_metrics.items():
             metric_submission(metric_name, metric_value)
             Check.metric_counts["disk"] += 1 
+        
+        custom_check.run()
         
         time.sleep(1)
     
