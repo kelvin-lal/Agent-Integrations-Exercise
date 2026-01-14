@@ -15,7 +15,7 @@ class Check:
     def __init__(self, metric_type, metric_quantity=0):
         self.metric_type = metric_type
         self.metric_quantity = metric_quantity
-        self.results = {}
+        self.status = "OK" if metric_quantity > 0 else "Error"
 
     def print_results(self):#trying something new here, call an external function within a class when this class is called
         check_print(self)
@@ -32,8 +32,7 @@ class Check:
         cpu_check = Check("CPU", counts["cpu"]) 
         memory_check = Check("Memory", counts["memory"])
         disk_check = Check("Disk", counts["disk"])
-        
+        print("Status Check:\n")
         check_print(cpu_check)
         check_print(memory_check)
         check_print(disk_check)
-
