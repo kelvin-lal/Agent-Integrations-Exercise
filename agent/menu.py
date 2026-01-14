@@ -20,15 +20,15 @@ def menu():
             choice = input("Enter:")
             
             match choice:
-                case "1" | "stop" | "Stop":  # basic exception handling for now
+                case "1" | "stop" | "Stop":  
                     agent_module.agent_running = False
                     if agent_thread:
-                        agent_thread.join()  # wait for agent thread to fully stop
+                        agent_thread.join()  
                 case "2" | "exit" | "Exit":
                     print("Exiting...")
                     return
                 case "3" | "check" | "Check":
-                    checks.Check.metricsCheck() #TODO think we should just be able to run the complete check through one func, delete others
+                    checks.Check.metricsCheck()
                 case _:
                     print("Invalid choice")
         else:
@@ -38,7 +38,7 @@ def menu():
             choice = input("Enter:")
             
             match choice:
-                case "1" | "start" | "Start":  # basic exception handling for now
+                case "1" | "start" | "Start": 
                     if config.get_DD_API_KEY() == "":
                         print("API Key not set, please enter API Key")
                         continue

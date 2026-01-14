@@ -3,18 +3,15 @@ Agent Integrations - Take home Exercise
 Kelvin Lal
 """
 
-#TODO add all package level imports to init/clean this up
-import sys
 import os
 import time
-import threading #for the menu, run the agent in a thread. check overhead for this vs loop
 from metrics.metrics import Metrics
 from metrics.metricSubmission import metric_submission
 from checks.checkRun import Check
 from agent.config import config
 from checks.customCheck import CustomCheck
 
-# global param (could be a class variable???)
+
 agent_running = False
 
 

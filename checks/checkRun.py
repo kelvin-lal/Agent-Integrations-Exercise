@@ -11,14 +11,14 @@ class Check:
         "memory": 0,
         "disk": 0,
         "custom": 0
-    } #dont think this will always work, class variables should be inhereted throughout the code
+    } 
 
     def __init__(self, metric_type, metric_quantity=0):
         self.metric_type = metric_type
         self.metric_quantity = metric_quantity
         self.status = "OK" if metric_quantity > 0 else "Error"
 
-    def print_results(self):#trying something new here, call an external function within a class when this class is called
+    def print_results(self):
         check_print(self)
 
     def check():
@@ -30,7 +30,6 @@ class Check:
     def metricsCheck():
         counts = Check.metric_counts
         
-        #TODO this should dynamically be set here, hate this hardcode, find a way to dynamically get the metric type or integration 
         cpu_check = Check("CPU", counts["cpu"]) 
         memory_check = Check("Memory", counts["memory"])
         disk_check = Check("Disk", counts["disk"])
