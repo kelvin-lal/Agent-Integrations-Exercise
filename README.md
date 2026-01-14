@@ -24,7 +24,7 @@ A Python-based Agent that collects system metrics and sends them to Datadog via 
 # Design discussion
 
 ## Project Structure
-
+```
 agentIntegrationsTest/
 ├── run.py                  # Entry point
 ├── agent/
@@ -42,7 +42,7 @@ agentIntegrationsTest/
 │   ├── checkPrint.py       # Status Check Formatting
 │   └── customCheck.py      # Custom check implementation
 └── .gitignore
-
+```
 ## Component Details
 
 ### 1. Entry Point (`run.py`)
