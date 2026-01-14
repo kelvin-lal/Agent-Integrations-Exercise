@@ -39,6 +39,9 @@ def menu():
             
             match choice:
                 case "1" | "start" | "Start":  # basic exception handling for now
+                    if config.get_DD_API_KEY() == "":
+                        print("API Key not set, please enter API Key")
+                        continue
                     agent_module.agent_running = True
                     agent_thread = threading.Thread(target=agent_module.agent, daemon=True)
                     agent_thread.start()
